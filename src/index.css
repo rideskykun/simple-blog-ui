@@ -10,3 +10,36 @@
   box-sizing: border-box;
   scroll-behavior: smooth;
 }
+
+.content-wrapper{
+  @apply max-w-6xl my-0 mx-auto bg-white
+}
+
+.animation-background{
+  background: linear-gradient(140deg, #ffffff, #e5e7eb);
+  background-size: 400% 400%;
+  -webkit-animation: gradientAnimation 34s ease infinite;
+  -moz-animation: gradientAnimation 34s ease infinite;
+  -o-animation: gradientAnimation 34s ease infinite;
+  animation: gradientAnimation 34s ease infinite;
+}
+@-webkit-keyframes gradientAnimation {
+  0%{background-position:49% 0%}
+  50%{background-position:52% 100%}
+  100%{background-position:49% 0%}
+}
+@-moz-keyframes gradientAnimation {
+  0%{background-position:49% 0%}
+  50%{background-position:52% 100%}
+  100%{background-position:49% 0%}
+}
+@-o-keyframes gradientAnimation {
+  0%{background-position:49% 0%}
+  50%{background-position:52% 100%}
+  100%{background-position:49% 0%}
+}
+@keyframes gradientAnimation {
+  0%{background-position:49% 0%}
+  50%{background-position:52% 100%}
+  100%{background-position:49% 0%}
+}
