@@ -1,5 +1,4 @@
 import React, {FC} from 'react'
-import Card from "../../components/card";
 import HomePostItem from "./home-post-item";
 
 const Home:FC = () => {

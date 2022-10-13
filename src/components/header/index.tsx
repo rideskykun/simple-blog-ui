@@ -1,5 +1,5 @@
 import React, {FC} from 'react'
-import {useNavigate} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const Header:FC = () => {
 
@@ -8,9 +8,9 @@ const Header:FC = () => {
     return(
         <header className={'fixed w-full z-50 bottom-0 right-0 md:top-0 md:sticky bg-white'}>
             <nav className={'flex border-black border-b items-center'}>
-                <p className={'font-bold text-2xl pl-3 m-0'}>
-                    <span className={'text-red-600'}>b</span>log
-                </p>
+                <Link to={'/'} className={'font-bold text-2xl pl-3 m-0'}>
+                    blog_
+                </Link>
                 <ul className={'flex w-full justify-center'}>
                     {
                         [

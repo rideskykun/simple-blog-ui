@@ -1,4 +1,5 @@
 import React, {FC} from "react";
+import {Link} from "react-router-dom";
 
 const HomePostItem:FC = () => {
     return(
@@ -20,7 +21,7 @@ const HomePostItem:FC = () => {
 
                 <a href={'#'} className={'px-5 py-2 transition border-r border-l border-white hover:bg-gray-200 hover:border-black'}>share</a>
                 <a href={'#'} className={'px-5 py-2 transition border-r border-l border-white hover:bg-gray-200 hover:border-black'}>save</a>
-                <a href={'#'} className={'px-5 py-2 transition bg-black text-white hover:bg-gray-800 active:bg-gray-600'}>read</a>
+                <Link to={'article'} className={'px-5 py-2 transition bg-black text-white hover:bg-gray-800 active:bg-gray-600'}>read</Link>
             </div>
         </div>
     )
