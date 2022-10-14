@@ -6,11 +6,11 @@ const Post:FC = () => {
     const readingProgress:Number = useReadingProgress();
 
     const [sections, setSections] = useState([1,2,3,4,5])
-    const sectionRefs = useRef([])
+    const sectionRefs = useRef<HTMLElement[]>([])
 
-    useEffect(()=>{
-        sectionRefs.current = sectionRefs.current.slice(0, sections.length);
-    },[sections])
+    const scrollClick = (index:number) => {
+        sectionRefs.current[index].scrollIntoView({behavior: 'smooth'})
+    }
 
     return(
         <div className={'border-r border-l border-black min-h-screen'}>
@@ -30,9 +30,10 @@ const Post:FC = () => {
                 <div className={'flex px-4 md:pr-4 md:pl-0 py-8'}>
                     <div className={'sticky top-1/4 basis-1/5 hidden md:block border-black border border-l-0 h-full mr-3'}>
                         <p className={'font-bold p-3'}>Table of Contents</p>
-                        {sections.map(s => (
+                        {sections.map((s, index) => (
                             <button
                                 key={s}
+                                onClick={()=>scrollClick(index)}
                                 className={'w-full text-left bg-gray-200 px-3 py-1 border-t border-black hover:bg-gray-300 active:bg-gray-400'}
                             >
                                 Section {s}
@@ -40,8 +41,8 @@ const Post:FC = () => {
                         ))}
                     </div>
                     <div className={'md:basis-4/5'}>
-                        {sections.map(section => (
-                            <section key={section}>
+                        {sections.map((section, index) => (
+                            <section key={section} ref={el => sectionRefs.current.push(el as HTMLElement)}>
                                 <h6 className={'text-lg mb-3 font-medium'}>Section {section}</h6>
                                 <p className={'whitespace-pre-wrap'}>
                                     {lorem}
