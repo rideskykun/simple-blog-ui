@@ -9,7 +9,7 @@ const Post:FC = () => {
         <div className={'border-r border-l border-black min-h-screen'}>
             {/*Progress Bar*/}
             <div className={'w-full bg-gray-100 h-4 border-b border-black z-40 top-12 sticky'}>
-                <div className={'h-4 bg-black'} style={{width:`${readingProgress}%`}}></div>
+                <div className={'h-4 bg-black transition'} style={{width:`${readingProgress}%`}}></div>
             </div>
             <div className={'border-black border-b'}>
                 <h1 className={'text-2xl p-3 font-bold'}>long article post title</h1>

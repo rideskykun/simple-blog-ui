@@ -14,6 +14,7 @@ const App:FC = () => {
               <Header/>
               <div className={'content-wrapper'}>
                   <Routes>
+                      <Route path={'*'} element={<Home/>}/>
                       <Route path={'/'} element={<Home/>}/>
                       <Route path={'/article'} element={<Post/>}/>
                   </Routes>
