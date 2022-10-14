@@ -15,8 +15,14 @@
   @apply max-w-6xl my-0 mx-auto bg-white
 }
 
+@media only screen and (max-width: 600px) {
+  .animation-background {
+    background: white
+  }
+}
+
 .animation-background{
-  background: linear-gradient(140deg, #ffffff, #e5e7eb);
+  background: linear-gradient(140deg, #ffffff, #c5c7cb);
   background-size: 400% 400%;
   -webkit-animation: gradientAnimation 34s ease infinite;
   -moz-animation: gradientAnimation 34s ease infinite;

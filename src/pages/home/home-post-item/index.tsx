@@ -4,16 +4,16 @@ import {Link} from "react-router-dom";
 const HomePostItem:FC = () => {
     return(
         <div className={'border border-t-0 border-black'}>
-            <div className={'flex'}>
+            <div className={'flex md:flex-row flex-col'}>
                 <img
                     src="https://images.pexels.com/photos/3098619/pexels-photo-3098619.jpeg?auto=compress&cs=tinysrgb&w=1600"
                     alt=""
-                    className={'w-96 h-60 object-cover bg-white hover:opacity-80 transition'}
+                    className={'md:w-96 w-full h-60 object-cover bg-white hover:opacity-80 transition'}
                 />
                 <div className={'border-l border-black p-3'}>
                     <p className={'text-sm text-gray-500'}>October 12 2022</p>
-                    <p className={'text-3xl my-2'}>Article Title</p>
-                    <p className={'text-sm'}>{lorem}</p>
+                    <p className={'text-xl md:text-3xl my-2'}>Article Title</p>
+                    <p className={'text-sm md:h-full h-24 overflow-hidden text-ellipsis'}>{lorem}</p>
                 </div>
             </div>
             <div className={'border-t border-black flex justify-end gap-5 items-center'}>
