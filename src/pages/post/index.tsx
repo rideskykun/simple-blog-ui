@@ -25,7 +25,7 @@ const Post:FC = () => {
             </div>
             <div className={''}>
                 <p className={'px-3 py-3 bg-black text-white w-32'}>read next:</p>
-                <div className={'grid grid-cols-4 gap-2 bg-black'}>
+                <div className={'grid grid-cols-2 md:grid-cols-4 gap-2 bg-black'}>
                     <RecommendedPost/>
                     <RecommendedPost/>
                     <RecommendedPost/>
