@@ -1,9 +1,16 @@
-import React, {FC} from "react";
+import React, {FC, useEffect, useRef, useState} from "react";
 import RecommendedPost from "./recommended-post";
 import useReadingProgress from "../../hooks/useReadingProgress";
 
 const Post:FC = () => {
     const readingProgress:Number = useReadingProgress();
+
+    const [sections, setSections] = useState([1,2,3,4,5])
+    const sectionRefs = useRef<HTMLElement[]>([])
+
+    const scrollClick = (index:number) => {
+        sectionRefs.current[index].scrollIntoView({behavior: 'smooth'})
+    }
 
     return(
         <div className={'border-r border-l border-black min-h-screen'}>
@@ -18,10 +25,33 @@ const Post:FC = () => {
                     alt=""
                     className={'w-full h-96 object-cover bg-white hover:opacity-80 transition border-b border-t border-black '}
                 />
-                <p className={'px-3 py-3 bg-black text-white w-52'}>October 12, 2022</p>
-                <p className={'whitespace-pre-wrap px-4 py-8'}>
-                    {lorem}
-                </p>
+                <p className={'px-3 py-3 bg-black text-white w-56'}>October 12, 2022</p>
+
+                <div className={'flex px-4 md:pr-4 md:pl-0 py-8'}>
+                    <div className={'sticky top-1/4 basis-1/5 hidden md:block border-black border border-l-0 h-full mr-3'}>
+                        <p className={'font-bold p-3'}>Table of Contents</p>
+                        {sections.map((s, index) => (
+                            <button
+                                key={s}
+                                onClick={()=>scrollClick(index)}
+                                className={'w-full text-left bg-gray-200 px-3 py-1 border-t border-black hover:bg-gray-300 active:bg-gray-400'}
+                            >
+                                Section {s}
+                            </button>
+                        ))}
+                    </div>
+                    <div className={'md:basis-4/5'}>
+                        {sections.map((section, index) => (
+                            <section key={section} ref={el => sectionRefs.current.push(el as HTMLElement)}>
+                                <h6 className={'text-lg mb-3 font-medium'}>Section {section}</h6>
+                                <p className={'whitespace-pre-wrap'}>
+                                    {lorem}
+                                </p>
+                            </section>
+                        ))}
+                    </div>
+                </div>
+
             </div>
             <div className={''}>
                 <p className={'px-3 py-3 bg-black text-white w-32'}>read next:</p>
@@ -48,14 +78,4 @@ const lorem =
     'Donec maximus aliquam condimentum. Nam aliquam, massa eu porttitor finibus, nunc lectus viverra felis, quis consectetur risus risus eget nulla. Sed feugiat dolor euismod magna sollicitudin, in pellentesque ante porttitor. Sed vel vulputate neque. Morbi sit amet libero vitae mauris condimentum vehicula. Aenean egestas, nisi sed lobortis fermentum, nisi arcu varius metus, sed cursus neque dui nec neque. Curabitur dictum, neque id facilisis dapibus, ipsum dolor cursus nunc, sed pellentesque eros ante eget nunc. Donec lacinia est ligula, a feugiat nibh rhoncus ut. Vivamus pharetra elit sit amet purus mattis, at elementum arcu viverra. Maecenas nisi metus, auctor vitae magna id, pulvinar bibendum quam. Donec sit amet fringilla justo. Phasellus vel dignissim sapien, eu congue tellus. Aliquam vitae pharetra odio. Etiam ipsum nulla, feugiat quis ornare non, iaculis sit amet quam. Vivamus id mattis orci, non tristique libero. Etiam ut purus vitae sem pretium finibus.\n' +
     '\n' +
     'In interdum, orci at placerat aliquam, lorem tellus lacinia mi, et scelerisque libero enim eget libero. Etiam turpis leo, finibus et lectus at, sollicitudin pharetra lectus. Proin convallis elit erat, a scelerisque nunc vestibulum bibendum. Duis lacus ante, consequat id rhoncus et, venenatis vel nunc. Nam blandit gravida velit sagittis tincidunt. Proin maximus venenatis lorem, ac pharetra ex varius eget. Curabitur erat mi, consectetur et libero at, consequat eleifend erat. Ut sit amet volutpat lectus. Phasellus facilisis mauris sodales aliquet blandit. Cras ornare, dolor vel accumsan consectetur, leo est volutpat libero, quis sagittis arcu tortor in nibh. In hac habitasse platea dictumst. Nam vulputate neque at pretium gravida. Aenean consectetur in justo at varius. Nam quam tortor, sollicitudin non lobortis quis, mollis et lorem. Ut ut pretium ipsum.\n' +
-    '\n' +
-    'Integer imperdiet eros ac nisl interdum, in commodo est ullamcorper. Vestibulum ac pharetra tellus. Suspendisse eu neque elit. Morbi sed magna et velit pellentesque euismod. Pellentesque eget ante porta, volutpat lacus nec, sollicitudin ante. Donec eu volutpat ipsum. Phasellus iaculis tortor ut neque lacinia, hendrerit suscipit ligula euismod. Cras porta nunc id nibh pellentesque fermentum. Pellentesque dictum imperdiet tortor non facilisis. Integer scelerisque blandit pellentesque. Suspendisse sollicitudin nunc laoreet elit imperdiet, vel luctus sem eleifend. Maecenas massa dui, laoreet ac tempus at, lacinia eu ipsum. Duis ac augue eu turpis viverra posuere ac at lacus. Aliquam quis felis efficitur urna elementum viverra quis vel mi. Mauris commodo metus eu diam venenatis tempus. Suspendisse iaculis est ac sapien porta, ut viverra ligula iaculis.\n' +
-    '\n' +
-    'Integer a ipsum a quam luctus cursus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi eu sollicitudin lectus. In auctor mattis ex, ut ultricies lacus rhoncus sagittis. Vivamus diam eros, tempus vel mi sed, faucibus eleifend nulla. Cras dapibus, nulla sed facilisis rutrum, est dolor malesuada sem, vitae imperdiet tortor metus ac eros. Nam in consectetur massa. Etiam vestibulum dictum orci, nec egestas mi lobortis non. Proin porta rutrum augue non aliquet. Nam risus metus, venenatis a nisl nec, sollicitudin tincidunt turpis. Aenean ultricies mauris sit amet mauris bibendum, vel lobortis dui molestie. Mauris nec dui et eros porta venenatis eget sed risus. Nulla a dapibus massa, euismod dictum diam.\n' +
-    '\n' +
-    'Nunc lacus metus, volutpat nec tempor a, ullamcorper in nisi. Quisque eu rutrum tortor. Maecenas iaculis odio ac massa vestibulum dapibus. Etiam pretium, tortor a posuere hendrerit, ipsum mi mattis purus, nec faucibus augue eros sollicitudin turpis. Suspendisse ut eros eu justo scelerisque sollicitudin. Sed feugiat maximus ipsum at dictum. Proin at magna risus. Donec et finibus dolor, in cursus nulla. Mauris aliquet dolor libero, in auctor magna hendrerit et. Nunc tristique, lacus malesuada fringilla commodo, tortor lorem vestibulum leo, non ultrices eros diam non orci. Integer sapien turpis, maximus nec libero in, ullamcorper sodales erat. In cursus vel ante eu dignissim. Vivamus turpis orci, hendrerit non turpis vitae, tempor elementum leo. Sed porttitor efficitur ullamcorper. Donec vehicula leo non urna venenatis, eget consequat neque mollis.\n' +
-    '\n' +
-    'Aliquam vel pretium ante. Ut quis lorem in ex ultricies congue non sed tellus. Cras quis orci et risus finibus auctor non at leo. Aliquam erat volutpat. Quisque tempus ut erat vitae suscipit. Donec interdum urna ut turpis interdum fermentum. Aenean eget cursus justo, sed molestie ex. Duis egestas fringilla tellus at eleifend. Vivamus ac condimentum nunc. Nulla laoreet mi maximus rhoncus imperdiet. Phasellus nibh arcu, efficitur eget rutrum pharetra, aliquam bibendum odio. Vestibulum iaculis, ex quis pretium vehicula, nulla leo pretium ex, eu vehicula sapien erat at elit. Nulla tempus quis neque pretium facilisis. Curabitur accumsan dolor ultrices accumsan pulvinar. Ut gravida felis et ligula imperdiet, at placerat elit fermentum. Pellentesque non orci consectetur, consectetur elit vel, vehicula nisl.\n' +
-    '\n' +
-    'Curabitur vitae urna et odio accumsan consequat. Nullam accumsan faucibus augue sed feugiat. Vestibulum sapien dolor, porta vel feugiat quis, consectetur a sapien. Duis turpis erat, condimentum ac tellus vel, pretium aliquet nisi. Aliquam imperdiet lacus a tellus finibus, at eleifend urna porttitor. Nam eu placerat urna. Aliquam sed dignissim neque, et euismod velit. Curabitur laoreet felis ac erat mattis venenatis. Suspendisse cursus dictum neque eu ultricies. Sed aliquam vel enim ut vehicula. Proin semper lorem sed metus bibendum pellentesque.\n' +
-    '\n'
+    '\n';
